@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surgicare - Medicine • Surgery • Maternity</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #DAA520;
+            --primary-light: #f4d03f;
+            --primary-dark: #c5941c;
+            --text-dark: #2c3e50;
+            --text-light: #666;
+            --white: #fff;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Enhanced Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar2 {
+            position: fixed;
+            top: 50;
+            width: 100%;
+            background: #DAA520;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            /* background-color: #C8A655; */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            width: 200px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links2 {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links2 a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links2 a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links2 a:hover::after {
+            width: 100%;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 21rem;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+        }
+
+        .enquiry-btn {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+        }
+
+        .enquiry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            margin-top: 150px;
+            padding: 7rem 5%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            opacity: 0.05;
+            border-radius: 50%;
+            transform: rotate(-15deg);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-text {
+            padding-right: 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: translateY(-10px);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 700px;
+            display: block;
+        }
+
+        /* Enhanced Services Section */
+        .services {
+            padding: 6rem 5%;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.50;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced Departments Section */
+        .departments {
+            padding: 4rem 5%;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .department-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .department-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .department-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .department-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .department-card:hover .department-image img {
+            transform: scale(1.1);
+        }
+
+        .department-content {
+            padding: 2rem;
+        }
+
+        .department-content h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        /* Enhanced Footer */
+        footer {
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .footer-column p {
+            margin-bottom: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .social-links2 {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links2 a {
+            color: var(--text-dark);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links2 a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger-icon {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: white;
+            position: relative;
+            transition: background-color 0.2s;
+        }
+
+        .hamburger-icon::before,
+        .hamburger-icon::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background-color: white;
+            transition: transform 0.2s;
+        }
+
+        .hamburger-icon::before {
+            transform: translateY(-6px);
+        }
+
+        .hamburger-icon::after {
+            transform: translateY(6px);
+        }
+
+        /* Mobile Menu */
+        #mobile-menu-toggle {
+            display: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            padding: 1rem;
+            /* background-color: #C8A655; */
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            background: linear-gradient(to bottom, #daa520, #cd953f);
+        } 
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links2 {
+                display: none;
+            }
+
+            .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 10rem;
+            }
+
+            .mobile-menu{
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            #mobile-menu-toggle:checked ~ .mobile-menu {
+                display: block;
+            }
+
+            #mobile-menu-toggle:checked ~ .nav-content .hamburger-icon {
+                background-color: transparent;
+            }
+
+            #mobile-menu-toggle:checked ~ .nav-content .hamburger-icon::after{
+                transform: rotate(45deg) translateY(0);
+            }
+
+            #mobile-menu-toggle:checked ~ .nav-content .hamburger-icon::before{
+                transform: rotate(-45deg) translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="logo2.jpeg" alt="Surgicare Logo" class="logo">
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <!-- <a href="#review">REVIEW</a> -->
+        </div>
+        <a href="Book.html" style="color: #fff; text-decoration: none;"><button class="enquiry-btn">Book Appointment</button></a>
+    </nav>
+    <nav class="navbar2">
+        <input type="checkbox" id="mobile-menu-toggle">
+        <div class="nav-container">
+            <div class="nav-content">
+                <ul class="nav-links2">
+                    <li><a href="doctor.html">OUR DOCTORS</a></li>
+                    <li><a href="Departments.html">DEPARTMENTS</a></li>
+                    <li><a href="Facilities.html">FACILITIES</a></li>
+                    <li><a href="Gallery.html">GALLERY</a></li>
+                </ul>
+                <label for="mobile-menu-toggle" class="hamburger">
+                    <span class="hamburger-icon"></span>
+                </label>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#contact">CONTACT</a>
+            <a href="doctor.html">OUR DOCTORS</a>
+            <a href="Departments.html">DEPARTMENTS</a>
+            <a href="Facilities.html">FACILITIES</a>
+            <a href="Gallery.html">GALLERY</a>
+        </div>
+    </nav>
+
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text animate">
+                <h1>Welcome to <span>SHRIPAD</span></h1>
+                <h2 style="color: var(--text-dark); font-size: xx-large;">Multispeciality Clinic</h2>
+                <p>Best Medical & Health Care Needs to Our Patients</p>
+                <button class="enquiry-btn"> <a href="learn.html" style="color: #fff; text-decoration: none;">Learn More</a> </button>
+            </div>
+            <div class="hero-image animate">
+                <img src="surgeon.jpeg" alt="Medical Professional">
+            </div>
+        </div>
+    </section>
+
+    <section class="departments" id="about">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>Coming Soon...</h2>
+                <!-- <p>This two treatments that are coming soon.</p> -->
+            </div>
+            <div class="services-grid">
+                <div class="department-card animate">
+                    <div class="department-image">
+                        <img src="ferti.jpeg" alt="Ferti Care">
+                    </div>
+                    <div class="department-content">
+                        <h3>Ferti Care</h3>
+                        <p>Specialized fertility treatments and reproductive health services</p>
+                    </div>
+                </div>
+                <div class="department-card animate">
+                    <div class="department-image">
+                        <img src="cosmo.jpeg" alt="Cosmo Care">
+                    </div>
+                    <div class="department-content">
+                        <h3>Cosmo Care</h3>
+                        <p>Advanced cosmetic procedures and aesthetic treatments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>Our Services</h2>
+                <p>Comprehensive healthcare solutions tailored to your needs</p>
+            </div>
+
+            <div class="services-grid">
+                <a href="Book.html" style="text-decoration: none;">
+                <div class="service-card animate">
+                    <i class="fas fa-user-md service-icon"></i>
+                    <h3>Consultation</h3>
+                    <p style="color: black;">Expert medical consultation with experienced healthcare professionals</p>
+                </div>
+                </a>
+
+                <div class="service-card animate">
+                    <i class="fas fa-microscope service-icon"></i>
+                    <h3>Diagnostic</h3>
+                    <p>Advanced diagnostic services using state-of-the-art equipment</p>
+                </div>
+
+                <a href="healthinfo.html" style="text-decoration: none;">
+                <div class="service-card animate">
+                    <i class="fas fa-notes-medical service-icon"></i>
+                    <h3>Health Info</h3>
+                    <p style="color: black;">Comprehensive health Info and preventive care</p>
+                </div>
+                </a>
+
+                <div class="service-card animate">
+                    <i class="fas fa-bullseye service-icon"></i>
+                    <h3>Updates</h3>
+                    <p>Stay connected to know our updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" id="contact">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <img src="logo2.jpeg" alt="Surgicare Logo" class="logo">
+                    <p>Providing exceptional healthcare services since 2024</p>
+
+                    <div class="social-links2">
+                    <a href="mailto:surgicareclinicinfo@gmail.com" class="footer-link" style="text-decoration: none;">surgicareclinicinfo@gmail.com</a>
+
+                    <a href="tel:+919702775212" class="footer-column" style="text-decoration: none;">+91 97027 75212</a>
+
+                    <a href="tel:+917083578576" class="footer-column" style="text-decoration: none;">+91 93731 25163</a>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61556994305588"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/9518913930"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/dr_abhi_obg/profilecard/?igsh=MWhic3ZhM2JmYmFvYw=="><i class="fab fa-instagram"></i></a>
+                        <!-- <a href="#"><i class="fab fa-linkedin"></i></a> -->
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <div class="social-links2">
+                    <h3>Address</h3>
+                    <h2>Mumbai <i class="fa-solid fa-location-dot"></i></h2>
+                    <a href="https://maps.app.goo.gl/kJHWyPMQCSt8XRLM7" style="text-decoration: none;">Shop No 3, Arch profile building, Plot no 145, <br> Shivkrupa CHS, RDP 8, Charkop Sector 6, <br> Kandivali West, Mumbai, Maharashtra 400067</a>
+                    <h2>Pune <i class="fa-solid fa-location-dot"></i></h2>
+                    <a href="https://g.co/kgs/vciFUXQ" style="text-decoration: none;">Shop 8, ABC nirman building, Opp. to Mac Donald, <br> Thergaon, Wakad, Pune 411033</a>
+                    </div>
+                </div>
+                <!-- <div class="footer-column">
+                    <nav class="navbar">
+                        <button class="enquiry-btn">Book Appointment</button>
+                    </nav>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+    </script>
+</body>
+</html>    

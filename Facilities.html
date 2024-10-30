@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Facilities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .facilities-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .facilities-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .facilities-header h2 span {
+            color: #DAA520;
+        }
+
+        .facilities-header p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .facility-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .facility-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .facility-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .facility-content {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .facility-icon {
+            position: absolute;
+            top: -25px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: #DAA520;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .facility-card h3 {
+            margin: 0.5rem 0;
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        .facility-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .facility-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .feature-item:before {
+            content: "✓";
+            color: #DAA520;
+            font-weight: bold;
+        }
+
+        .facility-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .facility-card:hover .facility-image img {
+            transform: scale(1.1);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #DAA520;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* back button */
+        .learn-more-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: #daa520;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .learn-more-btn:hover {
+            background: #daa520;
+            transform: translateX(5px);
+        }
+
+        .view-cases {
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .view-cases a {
+            color: #333;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Book Appointment */
+        .learn-more-btn2 {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: #daa520;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-right: 49rem;
+        }
+
+        .learn-more-btn2:hover {
+            background: #daa520;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .learn-more-btn2
+            {
+                margin-right: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .facilities-header h2 {
+                font-size: 2rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .learn-more-btn2
+            {
+                margin-right: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .facility-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="facilities-header">
+            <h2>Our <span>Facilities</span>.</h2>
+            <p>Experience healthcare excellence with our state-of-the-art facilities designed for your comfort and care. Each facility is equipped with the latest medical technology and staffed by experienced professionals.</p>
+            <div class="view-cases">
+                <!-- <a href="Book.html" class="learn-more-btn2">Book Appointment</a> -->
+                <a href="index.html" class="learn-more-btn">Back to main</a>
+            </div>
+        </div>
+
+        <div class="facilities-grid">
+            <div class="facility-card">
+                <div class="facility-image">
+                    <img src="Emergency.jpg" alt="Emergency Care">
+                </div>
+                <div class="facility-content">
+                    <div class="facility-icon">🏥</div>
+                    <h3>Emergency Care</h3>
+                    <p>24/7 emergency medical services with rapid response teams and advanced life support equipment.</p>
+                    <div class="facility-features">
+                        <div class="feature-item">24/7 Service</div>
+                        <div class="feature-item">Rapid Response</div>
+                        <!-- <div class="feature-item">ICU Support</div>
+                        <div class="feature-item">Expert Staff</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-image">
+                    <img src="pathology.jpg" alt="Operation Theaters">
+                </div>
+                <div class="facility-content">
+                    <div class="facility-icon">⚕️</div>
+                    <h3>Pathology</h3>
+                    <p>we offer comprehensive pathology services to support your health needs. Our state-of-the-art facility provides.</p>
+                    <div class="facility-features">
+                        <div class="feature-item">Fast Turnaround Times</div>
+                        <div class="feature-item">Expert Analysis</div>
+                        <div class="feature-item">Advanced Technology</div>
+                        <div class="feature-item">Comprehensive Services</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="facility-card">
+                <div class="facility-image">
+                    <img src="sonography.webp" alt="Laboratory Services">
+                </div>
+                <div class="facility-content">
+                    <div class="facility-icon">🔬</div>
+                    <h3>Sonography</h3>
+                    <p> offers advanced sonography services to provide non-invasive imaging for accurate diagnosis and monitoring.</p>
+                    <div class="facility-features">
+                        <div class="feature-item">Abdominal Ultrasound</div>
+                        <div class="feature-item">Pelvic Ultrasound</div>
+                        <div class="feature-item">Obstetric Ultrasound</div>
+                        <div class="feature-item">Vascular Ultrasound</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Years of Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50k+</div>
+                <div class="stat-label">Patients Treated</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Patient Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Emergency Service</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

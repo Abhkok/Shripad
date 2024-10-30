@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Treatments</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .header h1 span {
+            color: #daa520;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .treatments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .treatment-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 420px;
+        }
+
+        .treatment-card .card-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease;
+            backface-visibility: hidden;
+            background: white;
+        }
+
+        .treatment-card .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(180deg);
+            transition: transform 0.6s ease;
+            backface-visibility: hidden;
+            background: #1a1a1a;
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .treatment-card:hover .card-front {
+            transform: rotateY(180deg);
+        }
+
+        .treatment-card:hover .card-back {
+            transform: rotateY(0deg);
+        }
+
+        .treatment-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-front .content {
+            padding: 1.5rem;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .treatment-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-back h3 {
+            color: #DAA520;
+            margin-bottom: 1rem;
+        }
+
+        .card-back p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-back ul {
+            list-style-position: inside;
+            margin-bottom: 1rem;
+        }
+
+        .card-back li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #ddd;
+        }
+
+        .learn-more {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #DAA520;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .arrow {
+            font-size: 1.2rem;
+            color: #DAA520;
+        }
+
+        /* back button */
+        .learn-more-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: #daa520;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .learn-more-btn:hover {
+            background: #daa520;
+            transform: translateX(5px);
+        }
+
+        .view-cases {
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .view-cases a {
+            color: #333;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Book Appointment */
+        .learn-more-btn2 {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: #daa520;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-right: 49rem;
+        }
+
+        .learn-more-btn2:hover {
+            background: #daa520;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .treatments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our <span>Departments</span>.</h1>
+            <p></p>
+
+            <div class="view-cases">
+                <!-- <a href="Book.html" class="learn-more-btn2">Book Appointment</a> -->
+                <a href="index.html" class="learn-more-btn">Back to main</a>
+            </div>
+        </div>
+
+        <div class="treatments-grid">
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="Fetal medicine.jpeg" alt="Fetal medicine">
+                    <p style="padding-left: 5px;">The Fetal Medicine Department at Surgicare Clinic in Mumbai specializes in comprehensive care for expectant mothers and their developing babies.
+                    </p>
+                    <div class="content">
+                        <h3>Fetal Medicine<span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Fetal Medicine</h3>
+                    <!-- <p>The Fetal Medicine Department at Surgicare Clinic in Mumbai specializes in comprehensive care for expectant mothers and their developing babies. Our services include:
+                    </p> -->
+                    <ul>
+                        <li>Fetal Ultrasound: Detailed scans to monitor fetal growth and development.</li>
+                        <li>Genetic Screening: Assessments to identify potential genetic disorders.</li>
+                        <li>Amniocentesis: Procedures for diagnosing chromosomal abnormalities.</li>
+                        <li>Counseling: Expert guidance for high-risk pregnancies and prenatal issues.</li>
+                        <li>Fetal Echocardiography: Detailed heart assessments for early detection of congenital heart conditions.</li>
+                        <p>Our team of experienced specialists is dedicated to providing personalized care to ensure the health and well-being of both mother and baby.</p>
+                    </ul>
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="Gynaecology.jpeg" alt="Gynaecology Obstetrics">
+                    <p style="padding: 5px;">The Gynaecology and Obstetrics Department at Surgicare Clinic offers comprehensive care for women’s health throughout all stages of life.</p>
+                    <div class="content">
+                        <h3>Gynaecology & Obstetrics<span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Gynaecology</h3>
+                    <!-- <p>The Gynaecology and Obstetrics Department at Surgicare Clinic offers comprehensive care for women’s health throughout all stages of life. Our services include:</p> -->
+                    <ul>
+                        <li>Routine Examinations: Regular check-ups and screenings for early detection of conditions.</li>
+                        <li>Menstrual Disorders: Diagnosis and management of irregularities and related issues.</li>
+                        <li>Family Planning: Counseling on contraceptive options and reproductive health</li>
+                        <li>Cosmetic Gynecology: Aesthetic procedures to enhance comfort and confidence.</li>
+                    </ul>
+                    <h3>Obstetrics</h3>
+                    <li>Prenatal Care: Comprehensive monitoring and support throughout pregnancy.</li>
+                    <li>Postnatal Care: Follow-up care for new mothers and their infants.</li>
+                    <li>Infertility Solutions: Assessment and treatment options for couples facing infertility.</li>
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="Pediatrics.jpeg" alt="Ayurvedic Treatment">
+                    <p style="padding-left: 5px;">The Pediatric Department at Surgicare Clinic in Mumbai is dedicated to providing comprehensive healthcare for infants, children, and adolescents.</p>
+                    <div class="content">
+                        <h3>Pediatrics<span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Pediatrics</h3>
+                    <ul>
+                        <li>Routine Check-ups: Regular health assessments to monitor growth and development</li>
+                        <li>Immunizations: Vaccination programs to protect against common childhood diseases.</li>
+                        <li>Management of Acute Illnesses: Treatment for infections, fevers, and other urgent health concerns.</li>
+                        <li>Chronic Condition Management: Ongoing care for conditions such as asthma, diabetes, and allergies.</li>
+                        <li>Nutritional Guidance: Advice on healthy eating habits and dietary needs for children.</li>
+                        <li>Developmental Assessments: Evaluations to identify and address developmental delays.</li>
+                        <p>Visit Surgicare Clinic for specialized pediatric services in a nurturing environment.</p>
+                    </ul>
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="cosmetology.jpeg" alt="Cosmetology">
+                    <p style="padding-left: 5px;">At SURGICARE CLINIC in Mumbai, we offer a comprehensive range of dermatological, cosmetological, and trichological services to address all your skin and hair concerns. </p>
+                    <div class="content">
+                        <h3>Cosmatology<span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Cosmatology</h3>
+                    <p>Our team of experienced dermatologists specializes in diagnosing and treating various skin diseases, ensuring you receive personalized care tailored to your needs. Whether you're dealing with acne, eczema, or more complex skin conditions, our experts are here to help. In addition to skin treatments, our trichologists provide solutions for all types of hair problems, from hair loss to scalp issues. We also offer advanced laser treatments, utilizing cutting-edge technology to achieve optimal results for skin rejuvenation, hair removal, and more.</p>
+                    <!-- <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul> -->
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="general surgery.jpeg" alt="General surgery">
+                    <p style="padding-left: 5px;">The General Surgery at Surgicare Clinic in Mumbai is dedicated to providing comprehensive surgical care with a focus on patient safety and well-being.</p>
+                    <div class="content">
+                        <h3>General Surgery <span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>General surgery</h3>
+                    <p>Equipped with state-of-the-art technology and staffed by a team of highly skilled surgeons and medical professionals, the department offers a wide range of surgical services. These include procedures related to the gastrointestinal system, hernias, breast surgery, and minimally invasive techniques, among others. Emphasizing a patient-centered approach, the clinic ensures personalized treatment plans tailored to individual needs. Additionally, the department is committed to maintaining the highest standards of hygiene and post-operative care, ensuring a smooth recovery process for all patients.</p>
+                    <!-- <ul>
+                        <li>General Surgery</li>
+                        <li>Minimally Invasive</li>
+                        <li>Post-op Care</li>
+                        <li>Rehabilitation</li>
+                    </ul> -->
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="internal medicine.jpeg" alt="internal medicine">
+                    <p style="padding-left: 5px;">The Internal Medicine Department at Surgicare Clinic in Mumbai specializes in comprehensive care for various health conditions.</p>
+                    <div class="content">
+                        <h3>Internal Medicine<span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Internal medicine</h3>
+                    <!-- <p></p> -->
+                    <ul>
+                        <li>Hypertension Management: Personalized treatment plans to control blood pressure and reduce cardiovascular risks.</li>
+                        <li>Diabetes Care: Monitoring and management strategies for Type 1 and Type 2 diabetes, including lifestyle and dietary guidan
+                        </li>
+                        <li>Thyroid Disorders: Diagnosis and treatment for conditions such as hypothyroidism and hyperthyroidism, with regular monitoring and management.</li>
+                        <li>Communicable Diseases: Diagnosis, treatment, and preventive care for infectious diseases, ensuring effective management and patient education.</li>
+                    </ul>
+                    <p>Our skilled internists provide holistic care, focusing on prevention, early detection, and chronic disease management.</p>
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="physiotherapy.jpeg" alt="internal medicine">
+                    <p style="padding-left: 5px;">At Surgicare Clinic in Mumbai, our physiotherapy department offers a range of services to help patients recover and enhance their physical well-being. </p>
+                    <div class="content">
+                        <h3>Physiotherapy<span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Physiotherapy</h3>
+                    <!-- <p></p> -->
+                    <ul>
+                        <li>Rehabilitation Programs: Customized plans for recovery from injuries and surgeries.</li>
+                        <li>Pain Management: Techniques to alleviate chronic pain and discomfort.</li>
+                        <li>Posture and Ergonomic Assessments: Guidance on improving posture and reducing strain.</li>
+                        <li>Strength and Conditioning: Exercise programs to build strength and flexibility.</li>
+                        <li>Sports Injuries: Specialized treatment and rehabilitation for athletes.</li>
+                    </ul>
+                    <p>We focus on evidence-based practices to support your recovery journey.</p>
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+            <div class="treatment-card">
+                <div class="card-front">
+                    <img src="Ayurved.jpeg" alt="Ayurved">
+                    <p style="padding-left: 5px;">At Surgicare Clinic in Mumbai, we offer a comprehensive range of Ayurvedic and Panchakarma treatments tailored to various health needs.</p>
+                    <div class="content">
+                        <h3>Ayurveda & Panchakarma<span class="arrow">→</span></h3>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <h3>Ayurveda & Panchakarma</h3>
+                    <!-- <p></p> -->
+                    <ul>
+                        <li>Vamana Karma: Therapeutic vomiting to detoxify and balance the doshas.</li>
+                        <li>Virechana Karma: Purgation therapy to cleanse the digestive system and eliminate toxins.</li>
+                        <li>Basti Treatment: Enema therapy to nourish and detoxify the body.</li>
+                        <li>Nasya Karma: Nasal therapy for respiratory health and mental clarity.</li>
+                        <li>Raktamokshana: Bloodletting therapy to purify the blood and alleviate skin conditions.</li>
+                        <li>Shirodhara: Continuous pouring of warm oil on the forehead for relaxation and mental wellness.</li>
+                        <li>Garbha Sanskara: Prenatal care for expectant mothers to promote healthy development.</li>
+                        <li>Suvarna Prashana: Monthly immune-boosting treatment for children.</li>
+                    </ul>
+                    <!-- <a href="#" class="learn-more">Learn More</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

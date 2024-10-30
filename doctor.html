@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Doctors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .title span {
+            color: #ffc107;
+            position: relative;
+        }
+
+        .title span::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 193, 7, 0.3);
+            transform: rotate(-2deg);
+            z-index: -1;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .doctor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 193, 7, 0.1);
+            border-bottom-left-radius: 100%;
+            transition: transform 0.3s;
+        }
+
+        .doctor-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            margin: 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .avatar svg {
+            width: 60%;
+            height: 60%;
+            color: #ccc;
+        }
+
+        .doctor-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .doctor-name {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .doctor-date {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .doctor-specialty {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            color: #ffc107;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background: #ffc107;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            background: #ffb300;
+            transform: translateY(-2px);
+        }
+
+        .read-more svg {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .read-more:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* back button */
+        .learn-more-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: #daa520;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .learn-more-btn:hover {
+            background: #daa520;
+            transform: translateX(5px);
+        }
+
+        .view-cases {
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .view-cases a {
+            color: #333;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            .title {
+                font-size: 36px;
+            }
+
+            .doctors-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Our <span>Doctors!</span></h1>
+            <p class="subtitle">Expert Healthcare Professionals at Your Service</p>
+            <div class="view-cases">
+                <a href="index.html" class="learn-more-btn">Back to main</a>
+            </div>
+        </div>
+
+        <div class="doctors-grid">
+            <!-- Doctor Card 1 -->
+            <div class="doctor-card">
+                <div class="avatar">
+                    <img src="Doctor1.jpeg" alt="" width="200px" height="200px">
+                    <!-- <svg viewBox="0 0 24 24">
+                        <path fill="currentcolor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg> -->
+                </div>
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Abhishek D. Kokare</h2>
+                    <p class="doctor-specialty">M.S. Gynaecology & Obstetrics (Mumbai)</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <p class="stat-value">5+ Years</p>
+                            <p class="stat-label">Experience</p>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-value">500+</p>
+                            <p class="stat-label">Patients</p>
+                        </div>
+                    </div>
+                    <a href="Abhishek.html" class="read-more">
+                        View Profile
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Doctor Card 2 -->
+            <div class="doctor-card">
+                <div class="avatar">
+                    <img src="Doctor2.jpeg" alt="" width="200px" height="200px">
+                    <!-- <svg viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg> -->
+                </div>
+                <div class="doctor-info">
+                    <h2 class="doctor-name">Dr. Namrata B. Gadade</h2>
+                    <!-- <p class="doctor-date">July 06, 2000</p> -->
+                    <p class="doctor-specialty">Bachelors of Ayurvedic Medicine & Surgery</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <p class="stat-value">2+ Years</p>
+                            <p class="stat-label">Experience</p>
+                        </div>
+                        <div class="stat">
+                            <p class="stat-value">100+</p>
+                            <p class="stat-label">Patients</p>
+                        </div>
+                    </div>
+                    <a href="Namrata.html" class="read-more">
+                        View Profile
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

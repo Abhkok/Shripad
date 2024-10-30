@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic Learn More Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .learn-more-section {
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #ffc107;
+            position: relative;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 193, 7, 0.3);
+            transform: rotate(-2deg);
+            z-index: -1;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 193, 7, 0.1);
+            border-bottom-left-radius: 100%;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .icon-container {
+            width: 60px;
+            height: 60px;
+            background: #ffc107;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transform: rotate(-5deg);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .icon-container {
+            transform: rotate(0deg);
+        }
+
+        .icon-container svg {
+            width: 30px;
+            height: 30px;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .learn-more-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: #ffc107;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .learn-more-btn:hover {
+            background: #ffb300;
+            transform: translateX(5px);
+        }
+
+        .learn-more-btn svg {
+            margin-left: 8px;
+            transition: transform 0.3s;
+        }
+
+        .learn-more-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 36px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .feature-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="learn-more-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose <span class="highlight">Our Clinic</span></h2>
+                <p class="section-subtitle">
+                    Discover excellence in healthcare with our state-of-the-art facilities and expert medical professionals dedicated to your well-being.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="icon-container">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Surgicare</h3>
+                    <p class="feature-description">
+                        Surgicare Clinic, located in Kandivali West, is a reputable healthcare facility known for its comprehensive range of medical services. The clinic is home to esteemed practitioners, including Dr. Abhishek Kokare, a skilled gynecologist and obstetrician, and Dr. Namrata Kokare, a dedicated family physician and surgeon. Together, they offer a wide spectrum of healthcare services, encompassing medicine, surgery, and maternity care. Their commitment to patient-centered care ensures that each individual receives personalized treatment tailored to their specific needs. Surgicare Clinic is dedicated to providing high-quality healthcare, fostering a supportive environment for patients and their families.
+                    </p>
+                    <a href="index.html" class="learn-more-btn">
+                        Back to main
+                        <!-- <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg> -->
+                    </a>
+                </div>
+
+                <!-- Feature 2 -->
+                <!-- <div class="feature-card">
+                    <div class="icon-container">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Modern Facilities</h3>
+                    <p class="feature-description">
+                        State-of-the-art medical equipment and comfortable treatment rooms designed for your comfort and efficient care.
+                    </p>
+                    <a href="#" class="learn-more-btn">
+                        Read More
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div> -->
+
+                <!-- Feature 3 -->
+                <!-- <div class="feature-card">
+                    <div class="icon-container">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-description">
+                        Round-the-clock medical assistance and emergency services to ensure you receive care whenever you need it.
+                    </p>
+                    <a href="#" class="learn-more-btn">
+                        Read More
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </section>
+</body>
+</html>

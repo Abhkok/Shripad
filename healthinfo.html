@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(to right, #1a1a1a, #2d2d2d);
+            color: #D4AF37;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 0 0.5rem;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-bottom: 2px solid #D4AF37;
+        }
+
+        .gallery-header h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery-header p {
+            color: #FFC125;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            padding: 0.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            /* aspect-ratio: 16/9; */
+            height: 100%;
+            width: 100%;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        /* Touch Device Styles */
+        @media (hover: hover) {
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                border-color: #D4AF37;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+
+            .gallery-item:hover .image-overlay {
+                opacity: 1;
+            }
+        }
+
+        /* Always show overlay on mobile */
+        @media (hover: none) {
+            .image-overlay {
+                opacity: 1 !important;
+                background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)) !important;
+            }
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 1rem;
+            color: #FFD700;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-title {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        .image-description {
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+            color: #FFC125;
+        }
+
+        /* Mobile-optimized Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            touch-action: none;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+            padding: 1rem;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #FFD700;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1010;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1010;
+        }
+
+        .nav-button {
+            background: rgba(212, 175, 55, 0.2);
+            color: #FFD700;
+            border: none;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+            .gallery-container {
+                margin: 0.5rem auto;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .gallery-item {
+                margin: 0 auto;
+                max-width: 500px;
+            }
+
+            .nav-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.8rem;
+            }
+
+            .lightbox-image {
+                padding: 0.5rem;
+            }
+
+            /* Add swipe indicator */
+            .swipe-indicator {
+                position: absolute;
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                color: #FFD700;
+                font-size: 0.9rem;
+                opacity: 0.8;
+                text-align: center;
+                display: none;
+            }
+
+            .lightbox.active .swipe-indicator {
+                display: block;
+                animation: fadeOut 3s forwards;
+            }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 0.8; }
+            70% { opacity: 0.8; }
+            100% { opacity: 0; }
+        }
+
+        /* Loading animation */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid #FFD700;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        .lightbox.loading .loading {
+            display: block;
+        }
+
+        /* back button */
+        .learn-more-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            background: #daa520;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .learn-more-btn:hover {
+            background: #daa520;
+            transform: translateX(5px);
+        }
+
+        .view-cases {
+            text-align: right;
+            margin-top: 1rem;
+        }
+
+        .view-cases a {
+            color: #333;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+
+        @keyframes spin {
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container">
+        <div class="gallery-header">
+            <h1>Health Info</h1>
+            <p>Get Info About Your Health</p>
+            <div class="view-cases">
+                <a href="index.html" class="learn-more-btn">Back to main</a>
+            </div>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="General diet plan.jpeg" alt="Health 1" loading="lazy">
+                <div class="image-overlay">
+                    <h3 class="image-title">General Diet</h3>
+                    <h3 class="image-title">सामान्य पथ्य</h3>
+                    <!-- <p class="image-description"></p> -->
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="Biliary disorder diet plan.jpeg" alt="Health 2" loading="lazy">
+                <div class="image-overlay">
+                    <h3 class="image-title">Biliary Disorder Diet Plan</h3>
+                    <h3 class="image-title">पित्त विकारासाठी आहाराचे नियोजन</h3>
+                    <!-- <p class="image-description"></p> -->
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="pediatrics diet plan.jpeg" alt="Health 3" loading="lazy">
+                <div class="image-overlay">
+                    <h3 class="image-title">Pediatrics Diet Plan</h3>
+                    <h3 class="image-title">बालविकारासाठी आहाराचे नियोजन</h3>
+                    <!-- <p class="image-description"></p> -->
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="Menstruation.jpeg" alt="Health 4" loading="lazy">
+                <div class="image-overlay">
+                    <h3 class="image-title">Rules to Follow During Menstruation</h3>
+                    <h3 class="image-title">पाळीच्या काळात पाळावयाचे नियम</h3>
+                    <!-- <p class="image-description"></p> -->
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="Special general diet plan.jpeg" alt="Health 5" loading="lazy">
+                <div class="image-overlay">
+                    <h3 class="image-title">Special General Diet</h3>
+                    <h3 class="image-title">विशेष सामान्य पथ्य</h3>
+                    <!-- <p class="image-description"></p> -->
+                </div>
+            </div>
+
+            <!-- <div class="gallery-item">
+                <img src="" alt="Health 6" loading="lazy">
+                <div class="image-overlay">
+                    <h3 class="image-title">Reproduction Diet</h3>
+                    <h3 class="image-title">पुयोत्पत्तीचे पथ्य</h3>
+                </div>
+            </div> -->
+
+            <div class="gallery-item">
+                <img src="skin disorder.jpeg" alt="Health 7" loading="lazy">
+                <div class="image-overlay">
+                    <h3 class="image-title">Rules of Skin Disorders</h3>
+                    <h3 class="image-title">त्वचा विकारांचे नियम</h3>
+                    <!-- <p class="image-description"></p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="loading"></div>
+        <button class="close-lightbox">×</button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image">
+            <div class="swipe-indicator">Swipe left or right to navigate</div>
+            <div class="lightbox-nav">
+                <button class="nav-button prev">❮</button>
+                <button class="nav-button next">❯</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gallery = document.querySelector('.gallery-grid');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-image');
+        const closeBtn = document.querySelector('.close-lightbox');
+        const prevBtn = document.querySelector('.nav-button.prev');
+        const nextBtn = document.querySelector('.nav-button.next');
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.gallery-item img');
+
+        // Touch handling variables
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Open lightbox
+        gallery.addEventListener('click', (e) => {
+            const clickedItem = e.target.closest('.gallery-item');
+            if (clickedItem) {
+                const clickedImg = clickedItem.querySelector('img');
+                currentImageIndex = [...images].indexOf(clickedImg);
+                showImage(currentImageIndex);
+                lightbox.classList.add('active');
+            }
+        });
+
+        // Handle image loading
+        function showImage(index) {
+            lightbox.classList.add('loading');
+            currentImageIndex = index;
+            if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+            if (currentImageIndex >= images.length) currentImageIndex = 0;
+            
+            const newImage = new Image();
+            newImage.src = images[currentImageIndex].src;
+            newImage.onload = () => {
+                lightboxImg.src = newImage.src;
+                lightboxImg.alt = images[currentImageIndex].alt;
+                lightbox.classList.remove('loading');
+            };
+        }
+
+        // Touch Events for mobile swipe
+        lightbox.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        lightbox.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Prevent scrolling while swiping
+        });
+
+        lightbox.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeDistance = touchEndX - touchStartX;
+            const minSwipeDistance = 50;
+
+            if (Math.abs(swipeDistance) > minSwipeDistance) {
+                if (swipeDistance > 0) {
+                    showImage(currentImageIndex - 1);
+                } else {
+                    showImage(currentImageIndex + 1);
+                }
+            }
+        }
+
+        // Close lightbox
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Navigation
+        prevBtn.addEventListener('click', () => showImage(currentImageIndex - 1));
+        nextBtn.addEventListener('click', () => showImage(currentImageIndex + 1));
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') lightbox.classList.remove('active');
+            if (e.key === 'ArrowLeft') showImage(currentImageIndex - 1);
+            if (e.key === 'ArrowRight') showImage(currentImageIndex + 1);
+        });
+
+        // Prevent zoom on double tap for iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
